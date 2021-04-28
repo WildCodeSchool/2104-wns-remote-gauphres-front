@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import RandomChat from './components/pages/RandomChat/RandomChat';
+import HomePage from './components/pages/HomePage/HomePage';
 
-function App() {
-    return <div>Initialize</div>;
-}
+const App: FC = () => {
+    return (
+        <Router>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/random-chat" component={RandomChat} />
+        </Router>
+    );
+};
 
 export default App;
