@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {
     ApolloClient,
@@ -12,6 +12,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import RandomChat from './components/pages/RandomChatPage/RandomChat';
 import HomePage from './components/pages/HomePage/HomePage';
 import './App.css';
+import UserProvider from './contexts/UserContext';
 
 const wsLink = new WebSocketLink({
     uri: 'ws://localhost:9000/subscriptions',
@@ -45,10 +46,12 @@ const client = new ApolloClient({
 const App: FC = () => {
     return (
         <ApolloProvider client={client}>
-            <Router>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/random-chat" component={RandomChat} />
-            </Router>
+            <UserProvider>
+                <Router>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/random-chat" component={RandomChat} />
+                </Router>
+            </UserProvider>
         </ApolloProvider>
     );
 };
