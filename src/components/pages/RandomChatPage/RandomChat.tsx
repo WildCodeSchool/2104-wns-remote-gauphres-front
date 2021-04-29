@@ -53,9 +53,6 @@ const RandomChat: FC = () => {
     ];
     return (
         <ChatPage>
-            <button type="button">
-                <Link to="/">To HomePage</Link>
-            </button>
             <ChatView messages={messages} />
             <ChatForm />
         </ChatPage>

@@ -1,5 +1,6 @@
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { FC, useContext } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import {
     ApolloClient,
     InMemoryCache,
@@ -10,8 +11,13 @@ import {
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import RandomChat from './components/pages/RandomChatPage/RandomChat';
-import HomePage from './components/pages/HomePage/HomePage';
 import './App.css';
+import { Menu } from './style';
+import SideMenu from './components/SideMenu/SideMenu';
+import Dashboard from './components/pages/Dashboard/Dashboard';
+import ArticlesPage from './components/pages/Articles/Article';
+import EventsPage from './components/pages/Events/Events';
+import MembersPage from './components/pages/Members/Members';
 import { UserProvider } from './contexts/UserContext';
 
 const wsLink = new WebSocketLink({
@@ -45,14 +51,20 @@ const client = new ApolloClient({
 
 const App: FC = () => {
     return (
-        <ApolloProvider client={client}>
-            <UserProvider>
-                <Router>
-                    <Route exact path="/" component={HomePage} />
-                    <Route path="/random-chat" component={RandomChat} />
-                </Router>
-            </UserProvider>
-        </ApolloProvider>
+        <Router>
+            <ApolloProvider client={client}>
+                <Menu>
+                    <SideMenu />
+                    <Switch>
+                        <Route exact path="/dashboard" component={Dashboard} />
+                        <Route path="/articles" component={ArticlesPage} />
+                        <Route path="/random-chat" component={RandomChat} />
+                        <Route path="/members" component={MembersPage} />
+                        <Route path="/events" component={EventsPage} />
+                    </Switch>
+                </Menu>
+            </ApolloProvider>
+        </Router>
     );
 };
 
