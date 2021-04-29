@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC, useContext, Dispatch } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import ChatView from '../../Chat/ChatView/ChatView';
-import ChatForm from '../../Chat/ChatForm/ChatForm';
+import ChatForm from '../../Chat/ChatForm';
+import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
 
 const FIND_CHAT = gql`
@@ -24,10 +25,14 @@ const FIND_CHAT = gql`
 `;
 
 const RandomChat: FC = () => {
+    const user = useContext<[User | undefined, Dispatch<User>] | null>(
+        UserContext
+    );
     const { id } = useParams<{ id: string }>();
     const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
         variables: { id },
     });
+    // TEMPORARY fake messages initialization
     const messages = [
         {
             text: 'jhtfjhgfjh',
