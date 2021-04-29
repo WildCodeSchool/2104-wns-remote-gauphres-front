@@ -12,7 +12,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import RandomChat from './components/pages/RandomChatPage/RandomChat';
 import HomePage from './components/pages/HomePage/HomePage';
 import './App.css';
-import UserProvider from './contexts/UserContext';
+import { UserProvider } from './contexts/UserContext';
 
 const wsLink = new WebSocketLink({
     uri: 'ws://localhost:9000/subscriptions',

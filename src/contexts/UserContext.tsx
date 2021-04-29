@@ -1,19 +1,13 @@
-import React, {
-    createContext,
-    useState,
-    Dispatch,
-    ReactNode,
-    useEffect,
-} from 'react';
+import React, { createContext, useState, Dispatch, useEffect, FC } from 'react';
 
-type User = {
+export type User = {
     id: string;
     userName: string;
 };
 
-const UserContext = createContext<[User | undefined, Dispatch<User>] | null>(
-    null
-);
+export const UserContext = createContext<
+    [User | undefined, Dispatch<User>] | null
+>(null);
 
 // const FIND_USER = gql`
 //     query getUser($id: ID!) {
@@ -24,7 +18,7 @@ const UserContext = createContext<[User | undefined, Dispatch<User>] | null>(
 //     }
 // `;
 
-const UserProvider = ({ children }) => {
+export const UserProvider: FC = ({ children }) => {
     const [user, setUser] = useState<User>();
     // const id = 1;
     // const { loading, error: queryError, data } = useQuery(FIND_USER, {
@@ -48,5 +42,3 @@ const UserProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
-
-export default UserProvider;
