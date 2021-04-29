@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { gql, useQuery } from '@apollo/client';
 import ChatView from '../../Chat/ChatView/ChatView';
-import ChatForm from '../../Chat/ChatForm';
+import ChatForm from '../../Chat/ChatForm/ChatForm';
 
 const FIND_CHAT = gql`
     query getChat($id: ID!) {
