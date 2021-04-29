@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { FC, useContext } from 'react';
 import {
     ApolloClient,
     InMemoryCache,
@@ -17,6 +18,7 @@ import Dashboard from './components/pages/Dashboard/Dashboard';
 import ArticlesPage from './components/pages/Articles/Article';
 import EventsPage from './components/pages/Events/Events';
 import MembersPage from './components/pages/Members/Members';
+import { UserProvider } from './contexts/UserContext';
 
 const wsLink = new WebSocketLink({
     uri: 'ws://localhost:9000/subscriptions',
