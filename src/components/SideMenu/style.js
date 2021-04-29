@@ -2,12 +2,19 @@ import styled from 'styled-components';
 import { colors, fonts } from '../style/theme';
 
 // eslint-disable-next-line import/prefer-default-export
-export const Menu = styled.div`
+export const MenuContainer = styled.div`
+    display: flex;
     flex-direction: column;
-    background-color: ${colors.white};
-    border: 1px solid ${colors.light};
-    max-width: 50%;
-    margin: auto;
-    margin-top: 1em;
-    border-radius: 1em;
+    background-color: ${colors.light};
+    font-family: ${fonts.title};
+    font-size: 2em;
+    width: 20%;
+    padding: 3em 0em 2em 1em;
+    a {
+        text-decoration: none;
+        color: #131212;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 `;
