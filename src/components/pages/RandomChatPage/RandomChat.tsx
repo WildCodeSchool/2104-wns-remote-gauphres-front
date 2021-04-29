@@ -4,6 +4,7 @@ import { gql, useQuery } from '@apollo/client';
 import ChatView from '../../Chat/ChatView/ChatView';
 import ChatForm from '../../Chat/ChatForm';
 import { UserContext, User } from '../../../contexts/UserContext';
+import { ChatPage } from './style';
 
 const FIND_CHAT = gql`
     query getChat($id: ID!) {
@@ -50,14 +51,13 @@ const RandomChat: FC = () => {
         },
     ];
     return (
-        <>
-            <div>RandomChat</div>
-            <ChatView messages={messages} />
-            <ChatForm />
+        <ChatPage>
             <button type="button">
                 <Link to="/">To HomePage</Link>
             </button>
-        </>
+            <ChatView messages={messages} />
+            <ChatForm />
+        </ChatPage>
     );
 };
 

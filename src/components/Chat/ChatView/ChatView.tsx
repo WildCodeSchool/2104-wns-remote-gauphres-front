@@ -15,11 +15,9 @@ const ChatView: FC<ChatViewProps> = ({ messages }: ChatViewProps) => {
     return (
         <>
             <Container>
-                <div>
-                    {messages.map((message) => (
-                        <BubbleMessage>{message.text}</BubbleMessage>
-                    ))}
-                </div>
+                {messages.map((message) => (
+                    <BubbleMessage>{message.text}</BubbleMessage>
+                ))}
             </Container>
         </>
     );
