@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import React, { FC, useContext } from 'react';
 import {
     ApolloClient,
     InMemoryCache,
@@ -58,16 +57,22 @@ const App: FC = () => {
     return (
         <Router>
             <ApolloProvider client={client}>
-                <Menu>
-                    <SideMenu />
-                    <Switch>
-                        <Route exact path="/dashboard" component={Dashboard} />
-                        <Route path="/articles" component={ArticlesPage} />
-                        <Route path="/random-chat" component={RandomChat} />
-                        <Route path="/members" component={MembersPage} />
-                        <Route path="/events" component={EventsPage} />
-                    </Switch>
-                </Menu>
+                <UserProvider>
+                    <Menu>
+                        <SideMenu />
+                        <Switch>
+                            <Route
+                                exact
+                                path="/dashboard"
+                                component={Dashboard}
+                            />
+                            <Route path="/articles" component={ArticlesPage} />
+                            <Route path="/random-chat" component={RandomChat} />
+                            <Route path="/members" component={MembersPage} />
+                            <Route path="/events" component={EventsPage} />
+                        </Switch>
+                    </Menu>
+                </UserProvider>
             </ApolloProvider>
         </Router>
     );
