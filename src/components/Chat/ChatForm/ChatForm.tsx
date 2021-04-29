@@ -39,7 +39,7 @@ const ChatForm: FC = () => {
                 <button type="submit">Envoyer</button>
             </form>
         </>
-
+    );
 };
 
 export default ChatForm;

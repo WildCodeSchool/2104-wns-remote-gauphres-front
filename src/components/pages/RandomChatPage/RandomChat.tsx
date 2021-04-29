@@ -6,33 +6,32 @@ import ChatForm from '../../Chat/ChatForm/ChatForm';
 import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
 
-
-const FIND_CHAT = gql`
-    query getChat($id: ID!) {
-        getChat(id: $id) {
-            title
-            users {
-                firstName
-            }
-            messages {
-                text
-                author
-                createdAt
-            }
-            createdAt
-            isActive
-        }
-    }
-`;
+// const FIND_CHAT = gql`
+//     query getChat($id: ID!) {
+//         getChat(id: $id) {
+//             title
+//             users {
+//                 firstName
+//             }
+//             messages {
+//                 text
+//                 author
+//                 createdAt
+//             }
+//             createdAt
+//             isActive
+//         }
+//     }
+// `;
 
 const RandomChat: FC = () => {
     const user = useContext<[User | undefined, Dispatch<User>] | null>(
         UserContext
     );
     const { id } = useParams<{ id: string }>();
-    const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
-        variables: { id },
-    });
+    // const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
+    //     variables: { id },
+    // });
     // TEMPORARY fake messages initialization
     const messages = [
         {
