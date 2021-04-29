@@ -1,26 +1,47 @@
-import { gql, useQuery } from '@apollo/client';
-import React, { createContext, useState } from 'react';
+import React, {
+    createContext,
+    useState,
+    Dispatch,
+    ReactNode,
+    useEffect,
+} from 'react';
 
-const UserContext = createContext(null);
+type User = {
+    id: string;
+    userName: string;
+};
 
-const FIND_USER = gql`
-    query getUser($id: ID!) {
-        getUser(id: $id) {
-            firstName
-            lastName
-        }
-    }
-`;
+const UserContext = createContext<[User | undefined, Dispatch<User>] | null>(
+    null
+);
+
+// const FIND_USER = gql`
+//     query getUser($id: ID!) {
+//         getUser(id: $id) {
+//             firstName
+//             lastName
+//         }
+//     }
+// `;
 
 const UserProvider = ({ children }) => {
-    const [user, setUser] = useState({});
-    const id = 1;
-    const { loading, error: queryError, data } = useQuery(FIND_USER, {
-        variables: { id },
-    });
-    if (data) {
-        setUser(data);
-    }
+    const [user, setUser] = useState<User>();
+    // const id = 1;
+    // const { loading, error: queryError, data } = useQuery(FIND_USER, {
+    //     variables: { id },
+    // });
+    // if (data) {
+    //     setUser(data);
+    // }
+
+    // TEMPORARY fake user initialization
+    useEffect(() => {
+        setUser({
+            id: 'my_id',
+            userName: 'Me',
+        });
+    }, []);
+
     return (
         <UserContext.Provider value={[user, setUser]}>
             {children}
