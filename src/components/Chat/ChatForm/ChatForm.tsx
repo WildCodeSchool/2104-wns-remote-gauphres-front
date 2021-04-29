@@ -1,5 +1,6 @@
 import { gql, useMutation } from '@apollo/client';
 import React, { FC, useState } from 'react';
+import { Container, Form, FormInput, FormButton } from './style';
 
 const CREATE_MESSAGE = gql`
     mutation CreateMessage($input: InputMessage!) {
@@ -16,8 +17,8 @@ const ChatForm: FC = () => {
     const [createMessage, { data }] = useMutation(CREATE_MESSAGE);
 
     return (
-        <>
-            <form
+        <Container>
+            <Form
                 onSubmit={(e) => {
                     e.preventDefault();
                     createMessage({
@@ -30,15 +31,15 @@ const ChatForm: FC = () => {
                     });
                 }}
             >
-                <input
+                <FormInput
                     type="text"
                     name="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <button type="submit">Envoyer</button>
-            </form>
-        </>
+                <FormButton type="submit">Envoyer</FormButton>
+            </Form>
+        </Container>
     );
 };
 
