@@ -6,5 +6,7 @@ export const ChatPage = styled.div`
     background-color: ${colors.light};
     margin: 0;
     padding-top: 2em;
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
 `;

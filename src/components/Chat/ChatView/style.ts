@@ -6,8 +6,8 @@ export const Container = styled.div`
     flex-direction: column;
     background-color: ${colors.white};
     border: 1px solid ${colors.light};
-    max-width: 60%;
     border-radius: 1em;
+    width: 80%;
 `;
 
 export const BubbleMessage = styled.div`
