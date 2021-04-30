@@ -3,16 +3,24 @@ import React, { FC, useState } from 'react';
 import { Container, Form, FormInput, FormButton } from './style';
 
 const CREATE_MESSAGE = gql`
-    mutation CreateMessage($input: InputMessage!) {
-        createMessage(inputMessage: $input) {
-            id
-            text
-            author
+    mutation sendMessage($id: String!, $newMessage: CreateMessageInput!) {
+        sendMessage(_id: $id, newMessage: $newMessage) {
+            messages {
+                text
+                createdAt
+            }
+            createdAt
+            isActiv
+            title
         }
     }
 `;
 
-const ChatForm: FC = () => {
+type ChatFormProps = {
+    chatId: string;
+};
+
+const ChatForm: FC<ChatFormProps> = ({ chatId }: ChatFormProps) => {
     const [message, setMessage] = useState('');
     const [createMessage, { data }] = useMutation(CREATE_MESSAGE);
 
@@ -23,10 +31,18 @@ const ChatForm: FC = () => {
                     e.preventDefault();
                     createMessage({
                         variables: {
-                            input: {
+                            id: chatId,
+                            newMessage: {
+                                author: {
+                                    id: '60899d221aeef5070efe5c45',
+                                    userName: 'NiceUser',
+                                },
                                 text: message,
-                                author: 'aurélien',
                             },
+                            // input: {
+                            //     text: message,
+                            //     author: 'aurélien',
+                            // },
                         },
                     });
                 }}
