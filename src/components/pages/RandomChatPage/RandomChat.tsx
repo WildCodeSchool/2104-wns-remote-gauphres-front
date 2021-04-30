@@ -57,7 +57,7 @@ const RandomChat: FC = () => {
     ];
     return (
         <ChatPage>
-            <ChatView messages={messages} />
+            <ChatView user={user && user[0]} messages={messages} />
             <ChatForm chatId={chatRoomTest} />
         </ChatPage>
     );

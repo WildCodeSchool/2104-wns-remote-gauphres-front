@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Container, BubbleMessage } from './style';
+import { User } from '../../../contexts/UserContext';
 
 type Message = {
     text: string;
@@ -9,9 +10,10 @@ type Message = {
 
 type ChatViewProps = {
     messages: Message[];
+    user: User | null | undefined;
 };
 
-const ChatView: FC<ChatViewProps> = ({ messages }: ChatViewProps) => {
+const ChatView: FC<ChatViewProps> = ({ messages, user }: ChatViewProps) => {
     return (
         <>
             <Container>

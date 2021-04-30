@@ -4,6 +4,13 @@ import React, { createContext, useState, Dispatch, useEffect, FC } from 'react';
 export type User = {
     id: string;
     userName: string;
+    firstname: string;
+    lastname: string;
+    password: string;
+    avatar: string;
+    isConnected: boolean;
+    email: string;
+    birthDate: string;
 };
 
 export const UserContext = createContext<
@@ -29,14 +36,14 @@ const FIND_USER = gql`
 `;
 
 export const UserProvider: FC = ({ children }) => {
-    const [user, setUser] = useState<User>();
     const email = 'userEmail@email.com';
     const { loading, error: queryError, data } = useQuery(FIND_USER, {
         variables: { email },
     });
+    const [user, setUser] = useState<User>();
 
     useEffect(() => {
-        setUser(data);
+        setUser(data && data.getOneUser);
     }, [data]);
 
     // TEMPORARY fake user initialization
