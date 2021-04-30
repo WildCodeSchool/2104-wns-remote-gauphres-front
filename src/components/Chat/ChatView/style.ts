@@ -10,13 +10,16 @@ export const Container = styled.div`
     border-radius: 1em;
 `;
 
-export const BubbleMessage = styled.div`
-    background-color: ${colors.purple};
-    color: #fff;
+type BubbleMessageProps = { isMe: boolean };
+
+export const BubbleMessage = styled.div<BubbleMessageProps>`
+    background-color: ${(props) =>
+        props.isMe ? colors.purple : colors.yellow};
+    color: ${(props) => (props.isMe ? colors.white : colors.darkPurple)};
+    align-self: ${(props) => (props.isMe ? 'flex-end' : 'flex-start')};
     border-radius: 1em;
     padding: 1em;
     margin: 0.5em 1em 0.5em 1em;
     font-family: ${fonts.text};
     font-weight: bold;
-    align-self: flex-start; //TODO ajouter la condition pour utilisateur en flex-end
 `;

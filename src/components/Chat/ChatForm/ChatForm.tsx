@@ -39,10 +39,6 @@ const ChatForm: FC<ChatFormProps> = ({ chatId }: ChatFormProps) => {
                                 },
                                 text: message,
                             },
-                            // input: {
-                            //     text: message,
-                            //     author: 'aurélien',
-                            // },
                         },
                     });
                 }}
