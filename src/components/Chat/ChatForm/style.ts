@@ -4,9 +4,9 @@ import { colors, fonts } from '../../style/theme';
 export const Container = styled.div`
     flex-direction: column;
     background-color: ${colors.white};
-    max-width: 60%;
     margin-top: 1em;
     border-radius: 1em;
+    width: 80%;
 `;
 
 export const Form = styled.form`

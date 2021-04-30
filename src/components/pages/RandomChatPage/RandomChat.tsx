@@ -4,6 +4,7 @@ import { ChatView, Message } from '../../Chat/ChatView/ChatView';
 import ChatForm from '../../Chat/ChatForm/ChatForm';
 import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
+import MemberCard from '../../Chat/MemberCard/MemberCard';
 
 const chatRoomTest = '608aa75c09feab277fe800b3';
 
@@ -13,6 +14,10 @@ const FIND_CHAT = gql`
             title
             users {
                 userName
+                firstname
+                lastname
+                avatar
+                id
             }
             messages {
                 text
@@ -52,13 +57,16 @@ const RandomChat: FC = () => {
     }, [data]);
 
     return (
-        <ChatPage>
-            <ChatView
-                user={user && user[0]}
-                messages={chatRoomData && chatRoomData.messages}
-            />
-            <ChatForm chatId={chatRoomTest} />
-        </ChatPage>
+        <>
+            <ChatPage>
+                <ChatView
+                    user={user && user[0]}
+                    messages={chatRoomData && chatRoomData.messages}
+                />
+                <ChatForm chatId={chatRoomTest} />
+            </ChatPage>
+            <MemberCard />
+        </>
     );
 };
 
