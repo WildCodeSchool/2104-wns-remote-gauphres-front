@@ -6,7 +6,7 @@ import ChatForm from '../../Chat/ChatForm/ChatForm';
 import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
 
-const chatRoomTest = '60899d41b22fc4077824b62d';
+const chatRoomTest = '608aa75c09feab277fe800b3';
 
 const FIND_CHAT = gql`
     query getOneChatRoom($id: ID!) {

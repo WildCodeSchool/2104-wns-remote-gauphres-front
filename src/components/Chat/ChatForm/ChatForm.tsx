@@ -5,7 +5,6 @@ import { Container, Form, FormInput, FormButton } from './style';
 const CREATE_MESSAGE = gql`
     mutation sendMessage($id: String!, $newMessage: CreateMessageInput!) {
         sendMessage(_id: $id, newMessage: $newMessage) {
-            id
             messages {
                 text
                 createdAt
@@ -24,8 +23,6 @@ type ChatFormProps = {
 const ChatForm: FC<ChatFormProps> = ({ chatId }: ChatFormProps) => {
     const [message, setMessage] = useState('');
     const [createMessage, { data }] = useMutation(CREATE_MESSAGE);
-
-    console.log(chatId);
 
     return (
         <Container>
