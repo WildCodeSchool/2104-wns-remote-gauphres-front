@@ -50,7 +50,7 @@ const ChatForm: FC<ChatFormProps> = ({ chatId }: ChatFormProps) => {
                             },
                         });
                     } else {
-                        // change this to a real error message
+                        // TODO change this to a real error message
                         alert('You cannot send empty message');
                     }
                 }}
