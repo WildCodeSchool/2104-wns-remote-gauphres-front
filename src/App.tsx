@@ -7,8 +7,8 @@ import {
     split,
     HttpLink,
 } from '@apollo/client';
-import { WebSocketLink } from '@apollo/client/link/ws';
-import { getMainDefinition } from '@apollo/client/utilities';
+// import { WebSocketLink } from '@apollo/client/link/ws';
+// import { getMainDefinition } from '@apollo/client/utilities';
 import RandomChat from './components/pages/RandomChatPage/RandomChat';
 import './App.css';
 import { Menu } from './style';
