@@ -4,7 +4,7 @@ import { ChatView, Message } from '../../Chat/ChatView/ChatView';
 import ChatForm from '../../Chat/ChatForm/ChatForm';
 import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
-import MemberCard from '../../Chat/MemberCard/MemberCard';
+import MemberCard from '../../MemberCard/MemberCard';
 
 const chatRoomTest = '608aa75c09feab277fe800b3';
 

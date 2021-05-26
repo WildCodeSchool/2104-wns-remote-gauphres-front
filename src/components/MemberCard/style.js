@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { colors, fonts } from '../../style/theme';
+import { colors, fonts } from '../style/theme';
 
-export const Article = styled.div`
+export const Card = styled.div`
     background-color: ${colors.white};
     width: 250px;
     height: 300px;
