@@ -31,8 +31,7 @@
         "test": "jest",
         "eject": "react-scripts eject",
         "format": "prettier --write src/**/*.ts{,x}",
-        "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-        "jest": "jest"
+        "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
     },
     "eslintConfig": {
         "extends": [
