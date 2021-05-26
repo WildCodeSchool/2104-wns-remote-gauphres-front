@@ -45,7 +45,7 @@ const RandomChat: FC = () => {
     const user = useContext<[User | undefined, Dispatch<User>] | null>(
         UserContext
     );
-    // for test
+    // for test, chatroom id
     const id = '608aa75c09feab277fe800b3';
 
     const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
