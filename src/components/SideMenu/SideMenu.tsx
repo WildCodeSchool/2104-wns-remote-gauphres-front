@@ -6,10 +6,12 @@ import { AiOutlineWechat } from 'react-icons/ai';
 import { RiArticleLine } from 'react-icons/ri';
 import { BiCoffeeTogo } from 'react-icons/bi';
 import { MenuContainer } from './style';
+import UserConnected from './UserConnected';
 
 
 const SideMenu: FC = () => {
     return (
+        <div>
         <MenuContainer>  
             <NavLink to="/dashboard" activeStyle={{color: "purple"}}><BiCoffeeTogo /> Dashboard</NavLink>            
             <NavLink to="/articles" activeStyle={{color: "purple"}}><RiArticleLine /> Articles</NavLink>
@@ -17,6 +19,10 @@ const SideMenu: FC = () => {
             <NavLink to="/members" activeStyle={{color: "purple"}}><IoPersonAddSharp /> Membres</NavLink>
             <NavLink to="/events" activeStyle={{color: "purple"}}><IoBeer /> Evenements</NavLink>
         </MenuContainer>
+
+    <UserConnected />
+    </div>
+
     );
 };
 
