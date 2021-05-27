@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 import { User } from '../../../contexts/UserContext';
 
 type MoodProps = {
-    user: User | null | undefined;
+    user: User | undefined | null;
 };
 
 const MyMood: FC<MoodProps> = ({ user }: MoodProps) => {
     return (
         <div>
-            <p>{user.mood.title}</p>
-            <p>{user.mood.image}</p>
+            <p>{user?.userMood?.title}</p>
+            <p>{user?.userMood?.image}</p>
         </div>
     );
 };
