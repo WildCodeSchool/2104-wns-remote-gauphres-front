@@ -9,9 +9,9 @@ type MoodProps = {
 const MyMood: FC<MoodProps> = ({ user }: MoodProps) => {
     return (
         <SmallCard>
-            <p data-testid="mymood-title">{user?.userMood?.title}</p>
+            <p data-testid="myMood-title">{user?.userMood?.title}</p>
             <img
-                data-testid="mymood-image"
+                data-testid="myMood-image"
                 src={user?.userMood?.image}
                 alt={user?.userMood?.title}
             />
