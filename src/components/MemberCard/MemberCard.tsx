@@ -1,45 +1,55 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import React, {
+    FunctionComponent,
+    ReactElement,
+    useEffect,
+    useState,
+} from 'react';
 import { differenceInYears } from 'date-fns';
 import { Card, Img, HobbiesContainer } from './style';
+import { User } from '../../contexts/UserContext';
+
+const GET_USER_BY_ID = gql`
+    query getUserById($id: String!) {
+        getUserById(_id: $id) {
+            userName
+            firstname
+            lastname
+            password
+            chatrooms {
+                title
+            }
+            avatar
+            isConnected
+            email
+            birthDate
+            hobbies {
+                title
+                category
+            }
+        }
+    }
+`;
 
 const MemberCard: FunctionComponent = (): ReactElement => {
-    // simulated data
-    const userData = {
-        userName: 'NiceUser',
-        isConnected: true,
-        birthdate: new Date('1987-07-28'),
-        firstname: 'Patrick',
-        lastname: 'Duffy',
-        avatar: 'https://randomuser.me/api/portraits/men/58.jpg',
-        hobbies: [
-            {
-                category: 'preferedAnimal',
-                title: 'Chat',
-            },
-            {
-                category: 'preferedColor',
-                title: 'Green',
-            },
-            {
-                category: 'preferedFood',
-                title: 'Eggs',
-            },
-            {
-                category: 'preferedActivities',
-                title: ['walk', 'climing', 'sport'],
-            },
-        ],
-    };
+    const { loading, error, data } = useQuery(GET_USER_BY_ID, {
+        variables: { id: '60899d221aeef5070efe5c45' },
+    });
+
+    const [userData, setUserData] = useState<User>();
+    useEffect(() => {
+        setUserData(data?.getUserById);
+    }, [data]);
 
     const age =
-        userData.birthdate &&
-        differenceInYears(new Date(), new Date(userData.birthdate));
+        userData?.birthDate &&
+        differenceInYears(new Date(), new Date(userData.birthDate));
 
     const displayhobbies = () => {
-        return userData.hobbies.map((hobby) => {
+        return userData?.hobbies.map((hobby: any) => {
             return (
                 <p>
-                    <b>{hobby.category}: </b>{' '}
+                    <b>{hobby.category}: </b>
                     {Array.isArray(hobby.title)
                         ? hobby.title.join(', ')
                         : hobby.title}
@@ -48,17 +58,21 @@ const MemberCard: FunctionComponent = (): ReactElement => {
         });
     };
 
+    if (loading) {
+        return <p>loading</p>;
+    }
+
     return (
         <Card>
             <Img
                 className="avatar"
                 data-testid="avatar"
-                src={userData.avatar}
-                alt={userData.userName}
-                isConnected={userData.isConnected}
+                src={userData?.avatar}
+                alt={userData?.userName}
+                isConnected={userData?.isConnected || false}
             />
             <p data-testid="userIdentity">
-                {userData.firstname} {userData.lastname}
+                {userData?.firstname} {userData?.lastname}
             </p>
             <p data-testid="age"> {age} ans </p>
             <HobbiesContainer> {displayhobbies()} </HobbiesContainer>

@@ -17,12 +17,12 @@ const FIND_CHAT = gql`
                 firstname
                 lastname
                 avatar
-                id
+                _id
             }
             messages {
                 text
                 author {
-                    id
+                    _id
                     userName
                 }
                 createdAt
@@ -41,16 +41,22 @@ type ChatRoomType = {
     title: string;
 };
 
+function compareUsersId(currentUserId: string, usersId: string[]): string[] {
+    return usersId.filter((id) => id !== currentUserId);
+}
+
 const RandomChat: FC = () => {
     const user = useContext<[User | undefined, Dispatch<User>] | null>(
         UserContext
     );
+
     // for test
     const id = '608aa75c09feab277fe800b3';
 
     const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
         variables: { id },
     });
+
     const [chatRoomData, setChatRoomData] = useState<ChatRoomType>();
     useEffect(() => {
         setChatRoomData(data && data.getOneChatRoom);

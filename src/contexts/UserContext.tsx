@@ -10,7 +10,8 @@ export type User = {
     avatar: string;
     isConnected: boolean;
     email: string;
-    birthDate: string;
+    birthDate: Date;
+    hobbies: string[];
 };
 
 export const UserContext = createContext<
@@ -18,8 +19,9 @@ export const UserContext = createContext<
 >(null);
 
 const FIND_USER = gql`
-    query getOneUser($email: String!) {
-        getOneUser(email: $email) {
+    query getUserByEmail($email: String!) {
+        getUserByEmail(email: $email) {
+            _id
             userName
             firstname
             lastname
@@ -43,7 +45,7 @@ export const UserProvider: FC = ({ children }) => {
     const [user, setUser] = useState<User>();
 
     useEffect(() => {
-        setUser(data && data.getOneUser);
+        setUser(data?.getUserByEmail);
     }, [data]);
 
     // TEMPORARY fake user initialization
