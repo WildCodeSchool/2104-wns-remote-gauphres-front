@@ -22,7 +22,7 @@ export const ChatView: FC<ChatViewProps> = ({
             <Container>
                 {messages &&
                     messages.map((message) => {
-                        const isMe = message.author.userName === user?.userName;
+                        const isMe = message.author.username === user?.username;
                         return (
                             <BubbleMessage isMe={isMe}>
                                 {message.text}

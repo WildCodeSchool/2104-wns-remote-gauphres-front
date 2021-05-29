@@ -43,7 +43,7 @@ const ChatForm: FC<ChatFormProps> = ({ chatId }: ChatFormProps) => {
                                 newMessage: {
                                     author: {
                                         id: '60899d221aeef5070efe5c45',
-                                        userName: 'NiceUser',
+                                        username: 'NiceUser',
                                     },
                                     text: message,
                                 },

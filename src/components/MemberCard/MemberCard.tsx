@@ -9,19 +9,17 @@ import { differenceInYears } from 'date-fns';
 import { Card, Img, HobbiesContainer } from './style';
 import { User } from '../../contexts/UserContext';
 
-const GET_USER_BY_ID = gql`
-    query getUserById($id: String!) {
-        getUserById(_id: $id) {
-            userName
+const GET_USER_BY_USERNAME = gql`
+    query getUserByUsername($username: String!) {
+        getUserByUsername(username: $username) {
+            username
             firstname
             lastname
-            password
             chatrooms {
                 title
             }
             avatar
             isConnected
-            email
             birthDate
             hobbies {
                 title
@@ -32,13 +30,13 @@ const GET_USER_BY_ID = gql`
 `;
 
 const MemberCard: FunctionComponent = (): ReactElement => {
-    const { loading, error, data } = useQuery(GET_USER_BY_ID, {
-        variables: { id: '60899d221aeef5070efe5c45' },
+    const { loading, error, data } = useQuery(GET_USER_BY_USERNAME, {
+        variables: { username: 'NiceUser' },
     });
 
     const [userData, setUserData] = useState<User>();
     useEffect(() => {
-        setUserData(data?.getUserById);
+        setUserData(data?.getUserByUsername);
     }, [data]);
 
     const age =
@@ -68,7 +66,7 @@ const MemberCard: FunctionComponent = (): ReactElement => {
                 className="avatar"
                 data-testid="avatar"
                 src={userData?.avatar}
-                alt={userData?.userName}
+                alt={userData?.username}
                 isConnected={userData?.isConnected || false}
             />
             <p data-testid="userIdentity">

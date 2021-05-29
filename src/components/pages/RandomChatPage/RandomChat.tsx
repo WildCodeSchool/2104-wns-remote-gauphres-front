@@ -11,17 +11,15 @@ const FIND_CHAT = gql`
         getOneChatRoom(_id: $chatRoomId) {
             title
             users {
-                userName
+                username
                 firstname
                 lastname
                 avatar
-                id
             }
             messages {
                 text
                 author {
-                    id
-                    userName
+                    username
                 }
                 createdAt
             }
@@ -39,13 +37,13 @@ type ChatRoomType = {
     title: string;
 };
 
-function compareUsersId(currentUserId: string, users: User[]): string {
+function compareUsernames(currentUsername: string, users: User[]): string {
     if (users) {
         return users
             .map((chatRoomUser: User) => {
-                return chatRoomUser.id;
+                return chatRoomUser.username;
             })
-            .filter((id) => id !== currentUserId)
+            .filter((username) => username !== currentUsername)
             .toString();
     }
     return '';
@@ -62,7 +60,7 @@ const RandomChat: FC = () => {
         variables: { chatRoomId },
     });
 
-    const test = compareUsersId(
+    const test = compareUsernames(
         '60899d221aeef5070efe5c45',
         data?.getOneChatRoom.users
     );

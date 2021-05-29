@@ -3,7 +3,7 @@ import React, { createContext, useState, Dispatch, useEffect, FC } from 'react';
 
 export type User = {
     id: string;
-    userName: string;
+    username: string;
     firstname: string;
     lastname: string;
     password: string;
@@ -21,8 +21,7 @@ export const UserContext = createContext<
 const FIND_USER = gql`
     query getUserByEmail($email: String!) {
         getUserByEmail(email: $email) {
-            id
-            userName
+            username
             firstname
             lastname
             password
@@ -53,7 +52,7 @@ export const UserProvider: FC = ({ children }) => {
     // useEffect(() => {
     //     setUser({
     //         id: 'my_id',
-    //         userName: 'Me',
+    //         username: 'Me',
     //     });
     // }, []);
 
