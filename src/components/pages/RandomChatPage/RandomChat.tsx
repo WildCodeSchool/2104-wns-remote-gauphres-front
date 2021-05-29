@@ -6,23 +6,21 @@ import { UserContext, User } from '../../../contexts/UserContext';
 import { ChatPage } from './style';
 import MemberCard from '../../MemberCard/MemberCard';
 
-const chatRoomTest = '608aa75c09feab277fe800b3';
-
 const FIND_CHAT = gql`
-    query getOneChatRoom($id: String!) {
-        getOneChatRoom(_id: $id) {
+    query getOneChatRoom($chatRoomId: String!) {
+        getOneChatRoom(_id: $chatRoomId) {
             title
             users {
                 userName
                 firstname
                 lastname
                 avatar
-                _id
+                id
             }
             messages {
                 text
                 author {
-                    _id
+                    id
                     userName
                 }
                 createdAt
@@ -41,21 +39,33 @@ type ChatRoomType = {
     title: string;
 };
 
-function compareUsersId(currentUserId: string, usersId: string[]): string[] {
-    return usersId.filter((id) => id !== currentUserId);
+function compareUsersId(currentUserId: string, users: User[]): string {
+    if (users) {
+        return users
+            .map((chatRoomUser: User) => {
+                return chatRoomUser.id;
+            })
+            .filter((id) => id !== currentUserId)
+            .toString();
+    }
+    return '';
 }
 
 const RandomChat: FC = () => {
+    const chatRoomId = '608aa75c09feab277fe800b3';
+
     const user = useContext<[User | undefined, Dispatch<User>] | null>(
         UserContext
     );
 
-    // for test
-    const id = '608aa75c09feab277fe800b3';
-
     const { loading, error: queryError, data } = useQuery(FIND_CHAT, {
-        variables: { id },
+        variables: { chatRoomId },
     });
+
+    const test = compareUsersId(
+        '60899d221aeef5070efe5c45',
+        data?.getOneChatRoom.users
+    );
 
     const [chatRoomData, setChatRoomData] = useState<ChatRoomType>();
     useEffect(() => {
@@ -69,7 +79,7 @@ const RandomChat: FC = () => {
                     user={user && user[0]}
                     messages={chatRoomData && chatRoomData.messages}
                 />
-                <ChatForm chatId={chatRoomTest} />
+                <ChatForm chatId={chatRoomId} />
             </ChatPage>
             <MemberCard />
         </>

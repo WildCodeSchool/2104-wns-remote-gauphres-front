@@ -21,7 +21,7 @@ export const UserContext = createContext<
 const FIND_USER = gql`
     query getUserByEmail($email: String!) {
         getUserByEmail(email: $email) {
-            _id
+            id
             userName
             firstname
             lastname
@@ -48,6 +48,7 @@ export const UserProvider: FC = ({ children }) => {
         setUser(data?.getUserByEmail);
     }, [data]);
 
+    console.log(user);
     // TEMPORARY fake user initialization
     // useEffect(() => {
     //     setUser({
