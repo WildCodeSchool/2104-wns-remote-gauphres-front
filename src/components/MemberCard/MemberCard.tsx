@@ -9,7 +9,7 @@ import { differenceInYears } from 'date-fns';
 import { Card, Img, HobbiesContainer } from './style';
 import { User } from '../../contexts/UserContext';
 
-const GET_USER_BY_USERNAME = gql`
+export const GET_USER_BY_USERNAME = gql`
     query getUserByUsername($username: String!) {
         getUserByUsername(username: $username) {
             username
@@ -29,8 +29,8 @@ const GET_USER_BY_USERNAME = gql`
     }
 `;
 
-const MemberCard: FunctionComponent = (): ReactElement => {
-    const { loading, error, data } = useQuery(GET_USER_BY_USERNAME, {
+export const MemberCard: FunctionComponent = (): ReactElement => {
+    const { loading, data } = useQuery(GET_USER_BY_USERNAME, {
         variables: { username: 'NiceUser' },
     });
 
@@ -57,11 +57,15 @@ const MemberCard: FunctionComponent = (): ReactElement => {
     };
 
     if (loading) {
-        return <p>loading</p>;
+        return (
+            <Card>
+                <p>loading</p>
+            </Card>
+        );
     }
 
     return (
-        <Card>
+        <Card data-testid="cardContainer">
             <Img
                 className="avatar"
                 data-testid="avatar"
@@ -73,7 +77,9 @@ const MemberCard: FunctionComponent = (): ReactElement => {
                 {userData?.firstname} {userData?.lastname}
             </p>
             <p data-testid="age"> {age} ans </p>
-            <HobbiesContainer> {displayhobbies()} </HobbiesContainer>
+            <HobbiesContainer data-testid="hobbies">
+                {displayhobbies()}
+            </HobbiesContainer>
         </Card>
     );
 };
