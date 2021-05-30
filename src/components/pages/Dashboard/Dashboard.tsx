@@ -1,12 +1,7 @@
-import React, { Dispatch, FC, useEffect, useState, useContext } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import React, { Dispatch, FC, useContext } from 'react';
 import { User, UserContext } from '../../../contexts/UserContext';
 import MyMood from '../../DailyWindow/MyMood/MyMood';
-import {
-    MainWrapper,
-    RightWrapper,
-    Wrapper,
-} from '../../Chat/MemberCard/style';
+import { MainWrapper, RightWrapper, Wrapper } from './style';
 // import MyMatch from '../../DailyWindow/MyMatch';
 
 const Dashboard: FC = () => {
