@@ -1,6 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
 import React, { createContext, useState, Dispatch, useEffect, FC } from 'react';
 
+export type UserMood = {
+    title: string;
+    image: string;
+};
+
 export type User = {
     id: string;
     username: string;
@@ -12,6 +17,7 @@ export type User = {
     email: string;
     birthDate: Date;
     hobbies: string[];
+    userMood?: UserMood;
 };
 
 export const UserContext = createContext<
@@ -32,6 +38,10 @@ const FIND_USER = gql`
             isConnected
             email
             birthDate
+            userMood {
+                title
+                image
+            }
         }
     }
 `;
@@ -44,16 +54,8 @@ export const UserProvider: FC = ({ children }) => {
     const [user, setUser] = useState<User>();
 
     useEffect(() => {
-        setUser(data?.getUserByEmail);
+        setUser(data && data.getUserByEmail);
     }, [data]);
-
-    // TEMPORARY fake user initialization
-    // useEffect(() => {
-    //     setUser({
-    //         id: 'my_id',
-    //         username: 'Me',
-    //     });
-    // }, []);
 
     return (
         <UserContext.Provider value={[user, setUser]}>

@@ -7,7 +7,6 @@ import {
     split,
     HttpLink,
 } from '@apollo/client';
-import RandomChat from './components/pages/RandomChatPage/RandomChat';
 import './App.css';
 import { Menu } from './style';
 import SideMenu from './components/SideMenu/SideMenu';
@@ -16,6 +15,7 @@ import ArticlesPage from './components/pages/Articles/Article';
 import EventsPage from './components/pages/Events/Events';
 import MembersPage from './components/pages/Members/Members';
 import { UserProvider } from './contexts/UserContext';
+import RandomChat from './components/pages/RandomChatPage/RandomChat';
 
 // const wsLink = new WebSocketLink({
 //     uri: 'ws://localhost:9000/subscriptions',
