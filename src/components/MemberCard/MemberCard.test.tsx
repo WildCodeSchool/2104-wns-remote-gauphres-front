@@ -32,8 +32,8 @@ const mocks = [
 
 test('It should not display memberCard when loading', () => {
     render(
-        <MockedProvider mocks={mocks} addTypename={false}>
-            <MemberCard />
+        <MockedProvider mocks={mocks}>
+            <MemberCard username="" />
         </MockedProvider>
     );
     expect(screen.getByText('loading')).toBeInTheDocument();
@@ -41,8 +41,8 @@ test('It should not display memberCard when loading', () => {
 
 test('It should display the memberCard', async () => {
     render(
-        <MockedProvider mocks={mocks} addTypename={false}>
-            <MemberCard />
+        <MockedProvider mocks={mocks}>
+            <MemberCard username="" />
         </MockedProvider>
     );
 
@@ -60,6 +60,7 @@ test('It should display the memberCard', async () => {
     expect(screen.getByTestId('cardContainer')).toContainElement(hobbies[0]);
 });
 
+// WIP
 test('It should display data', () => {
     render(
         <MockedProvider mocks={mocks} addTypename={false}>
