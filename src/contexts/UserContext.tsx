@@ -47,7 +47,6 @@ export const UserProvider: FC = ({ children }) => {
         setUser(data?.getUserByEmail);
     }, [data]);
 
-    console.log(user);
     // TEMPORARY fake user initialization
     // useEffect(() => {
     //     setUser({

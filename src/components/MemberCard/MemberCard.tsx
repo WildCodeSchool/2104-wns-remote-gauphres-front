@@ -1,10 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React, {
-    FunctionComponent,
-    ReactElement,
-    useEffect,
-    useState,
-} from 'react';
+import React, { ReactElement, useEffect, useState, FC } from 'react';
 import { differenceInYears } from 'date-fns';
 import { Card, Img, HobbiesContainer } from './style';
 import { User } from '../../contexts/UserContext';
@@ -29,9 +24,13 @@ export const GET_USER_BY_USERNAME = gql`
     }
 `;
 
-export const MemberCard: FunctionComponent = (): ReactElement => {
+type MemberCardProps = {
+    username: string;
+};
+
+export const MemberCard: FC<MemberCardProps> = ({ username }): ReactElement => {
     const { loading, data } = useQuery(GET_USER_BY_USERNAME, {
-        variables: { username: 'NiceUser' },
+        variables: { username },
     });
 
     const [userData, setUserData] = useState<User>();
