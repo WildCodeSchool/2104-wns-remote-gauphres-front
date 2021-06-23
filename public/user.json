@@ -1,0 +1,15 @@
+{
+    "id": "1",
+    "userName": "string",
+    "firstname": "string",
+    "lastname": "string",
+    "password": "string",
+    "avatar": "string",
+    "isConnected": true,
+    "email": "string",
+    "birthDate": "string",
+    "userMood": {
+        "title": "test_title",
+        "image": "test_image"
+    }
+}
